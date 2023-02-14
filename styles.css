@@ -1,0 +1,47 @@
+.add-todo-button{
+    background-color:rgb(216, 103, 216);
+    color:white;
+    border:2px solid rgb(43, 197, 43);
+}
+.container{
+    background-color:blueviolet;
+    border: 2px solid goldenrod;
+    padding:2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    border-radius:2px;
+    width:400px;
+}
+#datePicker{
+    margin:0 10px 0 10px;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.header input{
+    flex:1;
+}
+.todo-list{
+    margin-top:10px;
+    color:gold;
+}
+.todo{
+    margin:10px 2px;
+    width:300px;
+    margin:10px 10px;
+
+}
+body{
+    width:100vw;
+    height:100vh;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+}

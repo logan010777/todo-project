@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>
+            Todo List
+        </title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+            <div id="container" class="container">
+                <div class="todo">
+                    <div class="header">
+                        <input id="input" type="text">
+                        <input id="datePicker" type="date">
+                        <button id="addTodoButton" class="add-todo-button">
+                        Add todo
+                        </button>
+                    </div>
+                    <div id="todoList" class="todo-list">
+    
+                    </div>
+                </div>
+            </div>
+
+        <script>
+            //Model
+                let todos;
+                const savedTodos = JSON.parse(localStorage.getItem("todo"));
+                if(Array.isArray(savedTodos)){
+                    todos = savedTodos;
+                }
+                else{
+                    todos = [{title:"washing dishes", dueDate:"2022/12/01", id:"id1"},
+                        {title:"meeting ai new projects", dueDate:"2030/09/07", id:"id2"},
+                        {title:"going to india", dueDate:"2024/01/15", id:"id3"}];
+                }
+                        render()
+
+                        const addTodoButton = document.getElementById("addTodoButton")
+                        
+                        addTodoButton.onclick=addTodo
+                        function saveTodos(){
+                            localStorage.setItem("todo",JSON.stringify(todos));
+                        }
+                        
+                //view 
+                function render(){
+                    document.getElementById("todoList").innerHTML=""
+                    todos.forEach(elem=>{
+                        const container =document.getElementById("todoList")
+                        const element= document.createElement("div");
+                        const deleteButton = document.createElement("button");
+                        deleteButton.innerText = "Delete";
+                        deleteButton.style = "margin-left:10px; border-color:red;"
+                        deleteButton.id=elem.id;
+                        deleteButton.onclick = remove;
+                        element.innerText=elem.title +" "+ elem.dueDate;
+                        container.appendChild(element);
+                        element.appendChild(deleteButton);
+
+                    });
+                };
+                //control
+                function addTodo(){
+                        const input = document.getElementById("input");
+                        const datePicker = document.getElementById("datePicker");
+                        dueDate = datePicker.value;
+                        const inputValue =input.value;
+                        const id=new Date().getTime()+""
+                        todos.push({title:inputValue, dueDate:dueDate,id:id});
+                        render()
+                        saveTodos()
+                        };
+                        
+                function remove(event){
+                    const deleteButton = event.target;
+                    const idToDelete = deleteButton.id;
+                    todos = todos.filter(elem=>{
+                        if(elem.id === idToDelete){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    })
+                    render();
+                    saveTodos()
+                };
+
+
+        </script>
+
+    </body>
+</html>
+
